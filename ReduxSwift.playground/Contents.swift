@@ -7,7 +7,7 @@ struct AppState {
         let text: String
         var done: Bool
     }
-
+    
     var todos: [Todo] = []
 }
 
@@ -25,7 +25,7 @@ func reducer(action: ActionType, state: AppState?) -> AppState {
     var state = state ?? AppState.init()
     
     switch action {
-
+        
     case let a as ADD_TODO:
         let todo = AppState.Todo(text: a.text, done: false)
         state.todos.append(todo)
@@ -33,11 +33,11 @@ func reducer(action: ActionType, state: AppState?) -> AppState {
         
     case let a as DO_TODO:
         state.todos[a.id].done = true
-    
+        
     case _ as CLEAR_DONE:
         let todos = state.todos.filter{!$0.done}
         state.todos = todos
-    
+        
     default: break
     }
     
@@ -67,14 +67,14 @@ let thunk = Middlewares<AppState>.thunk
 let thunkStore = Store<AppState>.init(reducer: reducer, state: nil, middlewares: [thunk])
 
 store.dispatch(THUNK<AppState>{store in
-    store.dispatch(CLEAR_DONE())
+    _ = store.dispatch(CLEAR_DONE())
 })
 
 let subs = Subscriptions<AppState, Int>.init()
 let subsStore = Store<AppState>.init(reducer: reducer, state: nil, middlewares: [subs.middleware])
 
-subs.subscribe(1) {state in
+subs.subscribe(key: 1) {state in
     print("state changed!")
 }
 
-subs.unsubscribe(1)
+subs.unsubscribe(key: 1)

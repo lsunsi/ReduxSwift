@@ -34,13 +34,13 @@ class CoreTests: QuickSpec {
                 let store = Store<State>.init(reducer: reducer, state: nil, middlewares: [])
 
                 expect(store.state.counter) == 0
-                store.dispatch(INC())
+                _ = store.dispatch(INC())
                 expect(store.state.counter) == 1
-                store.dispatch(DEC())
+                _ = store.dispatch(DEC())
                 expect(store.state.counter) == 0
-                store.dispatch(ADD(amount: 2))
+                _ = store.dispatch(ADD(amount: 2))
                 expect(store.state.counter) == 2
-                store.dispatch(NOP())
+                _ = store.dispatch(NOP())
                 expect(store.state.counter) == 2
             }
         }
@@ -57,7 +57,7 @@ class CoreTests: QuickSpec {
                 )
 
                 expect(store.state.counter) == 0
-                store.dispatch(INC())
+                _ = store.dispatch(INC())
                 expect(store.state.counter) == 0
             }
 
@@ -75,8 +75,8 @@ class CoreTests: QuickSpec {
 
                 expect(store1.state.counter) == 0
                 expect(store2.state.counter) == 0
-                store1.dispatch(INC())
-                store2.dispatch(INC())
+                _ = store1.dispatch(INC())
+                _ = store2.dispatch(INC())
                 expect(store1.state.counter) == 1
                 expect(store2.state.counter) == 0
             }

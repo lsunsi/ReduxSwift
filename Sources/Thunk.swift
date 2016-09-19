@@ -9,13 +9,13 @@
 public struct THUNK<State>: ActionType {
     public typealias Thunk = (Store<State>) -> ()
     public let thunk: Thunk
-    public init(_ thunk: Thunk) {
+    public init(thunk: @escaping Thunk) {
         self.thunk = thunk
     }
 }
 
 public extension Middlewares {
-    public static func thunk(store: Store<State>, yield: Dispatcher) -> Dispatcher {
+    public static func thunk(store: Store<State>, yield: @escaping Dispatcher) -> Dispatcher {
         return {action in
             if let a = action as? THUNK<State> {
                 a.thunk(store)

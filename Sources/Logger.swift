@@ -7,7 +7,7 @@
 //
 
 public extension Middlewares {
-    public static func logger(store: Store<State>, yield: Dispatcher) -> Dispatcher {
+    public static func logger(store: Store<State>, yield: @escaping Dispatcher) -> Dispatcher {
         return {action in
             let s = store.state
             let a = yield(action)

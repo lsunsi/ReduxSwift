@@ -22,7 +22,7 @@ class SubscriptionsTests: QuickSpec {
                 )
 
                 var state: State? = nil
-                subs.subscribe(1) {state = $0}
+                subs.subscribe(key: 1) {state = $0}
 
                 expect(state?.counter) == store.state.counter
             }
@@ -37,10 +37,10 @@ class SubscriptionsTests: QuickSpec {
 
                 var state1: State? = nil
                 var state2: State? = nil
-                subs.subscribe(1) {state1 = $0}
-                subs.subscribe(2) {state2 = $0}
+                subs.subscribe(key: 1) {state1 = $0}
+                subs.subscribe(key: 2) {state2 = $0}
 
-                store.dispatch(INC())
+                _ = store.dispatch(INC())
 
                 expect(state1?.counter) == store.state.counter
                 expect(state2?.counter) == store.state.counter
@@ -55,9 +55,9 @@ class SubscriptionsTests: QuickSpec {
                 )
 
                 var state: State? = nil
-                subs.subscribe(1) {state = $0}
-                subs.unsubscribe(1)
-                store.dispatch(INC())
+                subs.subscribe(key: 1) {state = $0}
+                subs.unsubscribe(key: 1)
+                _ = store.dispatch(INC())
 
                 expect(state?.counter) == store.state.counter - 1
             }
