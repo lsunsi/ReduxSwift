@@ -16,17 +16,14 @@ open class Store<State> {
 
     open var state: State
     open var dispatch: ((ActionType) -> ActionType)!
+    public typealias MiddleWare = (Store<State>, @escaping Dispatcher) -> Dispatcher
 
-    public init(reducer: @escaping Reducer, state: State?, middlewares: [(Store<State>, @escaping Dispatcher) -> Dispatcher]) {
+    public init(reducer: @escaping Reducer, state: State?, middlewares: [MiddleWare]) {
         self.state = state ?? reducer(INIT(), nil)
-        /*self.dispatch = middlewares.reduce({action in
-            self.state = reducer(action, self.state)
-            return action
-        }) {$1(self, $0)}*/
-        
         self.dispatch = middlewares.reduce({action in
             self.state = reducer(action, self.state)
             return action
         }) {$1(self, $0)}
     }
+
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2016 lsunsi. All rights reserved.
 //
 
-open class Subscriptions<State, Key: Hashable> {
+public class Subscriptions<State, Key: Hashable> {
     public typealias Callback = (State) -> ()
 
     var values: [Key: Callback]
@@ -17,7 +17,7 @@ open class Subscriptions<State, Key: Hashable> {
         self.store = nil
     }
 
-    open func middleware(store: Store<State>, yield: @escaping Dispatcher) -> Dispatcher {
+    public func middleware(store: Store<State>, yield: @escaping Dispatcher) -> Dispatcher {
         self.store = store
         return {action in
             _ = yield(action)
@@ -26,12 +26,12 @@ open class Subscriptions<State, Key: Hashable> {
         }
     }
 
-    open func subscribe(key: Key, callback: @escaping Callback) {
+    public func subscribe(key: Key, callback: @escaping Callback) {
         values[key] = callback
         callback(store.state)
     }
 
-    open func unsubscribe(key: Key) {
+    public func unsubscribe(key: Key) {
         values[key] = nil
     }
 }
