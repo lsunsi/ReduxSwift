@@ -4,7 +4,7 @@
    <FileRef
       location = "container:ReduxSwift.xcodeproj">
    </FileRef>
-   <FileRef
+   <!--<FileRef
       location = "group:ReduxSwift.playground">
-   </FileRef>
+   </FileRef>-->
 </Workspace>

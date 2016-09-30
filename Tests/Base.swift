@@ -33,16 +33,16 @@ func reducer(action: ActionType, state: State?) -> State {
     return state
 }
 
-func decOnIncMiddleware(store: Store<State>, yield: Dispatcher) -> Dispatcher {
+func decOnIncMiddleware(store: Store<State>, yield: @escaping Dispatcher) -> Dispatcher {
     return {action in
         if action is INC {
-            store.dispatch(DEC())
+            _ = store.dispatch(DEC())
         }
         return yield(action)
     }
 }
 
-func incToAddMiddleware(store: Store<State>, yield: Dispatcher) -> Dispatcher {
+func incToAddMiddleware(store: Store<State>, yield: @escaping Dispatcher) -> Dispatcher {
     return {action in
         if action is INC {
             return yield(ADD(amount: 1))
