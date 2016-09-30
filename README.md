@@ -2,10 +2,10 @@
 
 ReduxSwift is a minimal Swift port of [Redux](https://github.com/reactjs/redux), a popular JavaScript library for application state management.
 
-[![Swift version](https://img.shields.io/badge/Swift-2.2-brightgreen.svg?style=flat-square)](https://swift.org/)
+[![Swift version](https://img.shields.io/badge/Swift-3.0-brightgreen.svg?style=flat-square)](https://swift.org/)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
 [![Platforms](https://img.shields.io/badge/Platforms-iOS%20tvOS%20macOS%20watchOS-lightgrey.svg?style=flat-square)](https://swift.org/)
-[![Release](https://img.shields.io/badge/Release-1.0.0-blue.svg?style=flat-square)](https://github.com/lsunsi/ReduxSwift/releases)
+[![Release](https://img.shields.io/badge/Release-1.1.0-blue.svg?style=flat-square)](https://github.com/lsunsi/ReduxSwift/releases)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://github.com/lsunsi/ReduxSwift/blob/master/LICENSE)
 
 ###### Functionality
