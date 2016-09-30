@@ -17,16 +17,16 @@ public class Subscriptions<State, Key: Hashable> {
         self.store = nil
     }
 
-    public func middleware(store: Store<State>, yield: Dispatcher) -> Dispatcher {
+    public func middleware(store: Store<State>, yield: @escaping Dispatcher) -> Dispatcher {
         self.store = store
         return {action in
-            yield(action)
+            _ = yield(action)
             self.values.forEach {$1(store.state)}
             return action
         }
     }
 
-    public func subscribe(key: Key, callback: Callback) {
+    public func subscribe(key: Key, callback: @escaping Callback) {
         values[key] = callback
         callback(store.state)
     }

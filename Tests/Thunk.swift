@@ -21,7 +21,7 @@ class ThunkTests: QuickSpec {
                 )
 
                 var called = false
-                store.dispatch(THUNK<State>({_ in called = true}))
+                _ = store.dispatch(THUNK<State>(thunk: {_ in called = true}))
                 expect(called) == true
             }
 
@@ -33,7 +33,7 @@ class ThunkTests: QuickSpec {
                 )
 
                 var equal = false
-                store.dispatch(THUNK<State>({s in equal = s === store}))
+                _ = store.dispatch(THUNK<State>(thunk: {s in equal = s === store}))
                 expect(equal) == true
             }
         }
