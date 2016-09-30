@@ -82,7 +82,6 @@ func reducer(action: ActionType, state: AppState?) -> AppState {
         let todo = AppState.Todo(text: a.text, done: false)
         state.todos.append(todo)
 
-
     case let a as DO_TODO:
         state.todos[a.id].done = true
 
@@ -136,11 +135,11 @@ This middleware lets you do that in a cool reactive programming way.
 let subs = Subscriptions<AppState, Int>.init()
 let subsStore = Store<AppState>.init(reducer: reducer, state: nil, middlewares: [subs.middleware])
 
-subs.subscribe(1) {state in
+subs.subscribe(key: 1) {state in
     print("state changed!")
 }
 
-subs.unsubscribe(1)
+subs.unsubscribe(key: 1)
 ```
 
 ###### Tips
@@ -157,7 +156,7 @@ let thunk = Middlewares<AppState>.thunk
 let thunkStore = Store<AppState>.init(reducer: reducer, state: nil, middlewares: [thunk])
 
 thunkStore.dispatch(THUNK<AppState>{store in
-    store.dispatch(CLEAR_DONE())
+    _ = store.dispatch(CLEAR_DONE())
 })
 ```
 
