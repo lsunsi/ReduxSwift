@@ -177,10 +177,36 @@ let loggedStore = Store<AppState>.init(reducer: reducer, state: nil, middlewares
 ## Installation
 
 ### Carthage
+> This is the recommended way of installing this package.
 
+[Carthage](https://github.com/Carthage/Carthage) is an awesome dependency manager that'll take care of your dependencies without getting in your way.
+To install ReduxSwift through Carthage, just follow these steps:
+* Add the following line to your Cartfile
 ```
 github "lsunsi/ReduxSwift"
 ```
+* Run the following command to fetch and build your dependencies
+```
+$ carthage update
+```
+* Drag the compiled framework from the Carthage folder into your project
+* Rejoice!
+
+### Manually
+If you prefer to install this package manually, just follow these steps:
+* Make sure your project is a git repository. If it isn't, just run this command from your project root folder:
+```
+$ git init
+```
+* Add ReduxSwift as a git submodule by running the following command.
+```
+$ git submodule add https://github.com/lsunsi/ReduxSwift.git
+```
+* Drag the ReduxSwift.xcodeproj from the newly created ReduxSwift folder to your project.
+> It should be nested in your actual project in the Project Navigator.
+* Add ReduxSwift to your Embedded Binaries.
+> Select your project from the Project Navigator. Then, select your Target and you'll see an Embedded Binaries menu in the General tab.
+* Rejoice!
 
 ## License
 
